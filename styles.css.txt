@@ -1,0 +1,57 @@
+/* styles.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0fff0;
+  color: #003300;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 columnas para los 5 cuatrimestres */
+  gap: 10px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.cuatrimestre {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.materia {
+  padding: 10px;
+  border: 2px solid #339966;
+  border-radius: 8px;
+  background-color: #ccffcc;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  position: relative;
+  text-align: center;
+  font-size: 14px;
+}
+
+.materia:hover {
+  background-color: #99ff99;
+}
+
+.materia.aprobada {
+  background-color: #33cc33;
+  color: white;
+  border-color: #267326;
+}
+
+.materia.bloqueada {
+  background-color: #e6ffe6;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
