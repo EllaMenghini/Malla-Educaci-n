@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Malla Interactiva - Licenciatura en Educación</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <title>Malla Curricular Interactiva - Educación UNSAM</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Licenciatura en Educación - Malla Interactiva</h1>
-  <div id="grid" class="grid-container"></div>
-  <script src="script.js"></script>
+  <h1>Malla Curricular - Licenciatura y Profesorado en Ciencias de la Educación</h1>
+  <div id="grid-container">
+
+    <!-- Se insertan dinámicamente las materias -->
+  </div>
+
+  <template id="subject-template">
+    <div class="subject blocked" data-id="" data-prereq="">
+      <span class="number"></span>
+      <span class="name"></span>
+      <button class="toggle">Aprobar</button>
+    </div>
+  </template>
+ <script src="script.js" defer></script>
 </body>
 </html>
