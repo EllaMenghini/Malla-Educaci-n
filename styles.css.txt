@@ -1,5 +1,3 @@
-/* styles.css */
-
 body {
   font-family: 'Segoe UI', sans-serif;
   background-color: #f5fff7;
@@ -133,3 +131,4 @@ h1 {
     min-width: 220px;
   }
 }
+
