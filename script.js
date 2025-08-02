@@ -1,110 +1,93 @@
-const materias = [
-  { codigo: "HISG", nombre: "Historia General", anio: 1, cuatri: 1, abre: ["HISM"] },
-  { codigo: "FIL", nombre: "Introducción a la Filosofía", anio: 1, cuatri: 1, abre: ["FILO"] },
-  { codigo: "EPI", nombre: "Epistemología", anio: 1, cuatri: 1, abre: ["MET"] },
-  { codigo: "POL", nombre: "Ciencia Política", anio: 1, cuatri: 2, abre: ["SOC", "PLE", "AI"] },
-  { codigo: "PED1", nombre: "Pedagogía I", anio: 1, cuatri: 2, abre: ["CUR", "PED2", "DID1"] },
-  { codigo: "SOCIO", nombre: "Sociología", anio: 1, cuatri: 2 },
+  <script>
+    const materias = [
+      { id: '1', nombre: 'Historia General', año: 1, cuatrimestre: 1, correlativas: [] },
+      { id: '2', nombre: 'Introducción a la Filosofía', año: 1, cuatrimestre: 1, correlativas: [] },
+      { id: '3', nombre: 'Epistemología de las Ciencias Sociales', año: 1, cuatrimestre: 1, correlativas: [] },
+      { id: '4', nombre: 'Introducción a la Ciencia Política', año: 1, cuatrimestre: 2, correlativas: [] },
+      { id: '5', nombre: 'Pedagogía I', año: 1, cuatrimestre: 2, correlativas: [] },
+      { id: '6', nombre: 'Introducción a la Sociología', año: 1, cuatrimestre: 2, correlativas: [] },
 
-  { codigo: "ORG", nombre: "Estudio de las Organizaciones", anio: 2, cuatri: 1, abre: ["ADMI"] },
-  { codigo: "MET", nombre: "Metodología", anio: 2, cuatri: 1, abre: ["INV"] },
-  { codigo: "HISM", nombre: "Historia de la Ed. Moderna", anio: 2, cuatri: 1, abre: ["HISA", "ECOF", "COMP"] },
-  { codigo: "PSI", nombre: "Psicología", anio: 2, cuatri: 2, abre: ["PSID"] },
-  { codigo: "ECO", nombre: "Economía", anio: 2, cuatri: 2, abre: ["ECOF"] },
-  { codigo: "HISA", nombre: "Historia de la Ed. en Arg.", anio: 2, cuatri: 2, abre: ["PLE"] },
+      { id: '7', nombre: 'Introducción al Estudio de las Organizaciones', año: 2, cuatrimestre: 3, correlativas: [] },
+      { id: '8', nombre: 'Metodología de la Investigación', año: 2, cuatrimestre: 3, correlativas: ['3'] },
+      { id: '9', nombre: 'Historia de la Educación Moderna y Contemporánea', año: 2, cuatrimestre: 3, correlativas: ['1'] },
+      { id: '10', nombre: 'Introducción a la Psicología', año: 2, cuatrimestre: 4, correlativas: [] },
+      { id: '11', nombre: 'Elementos de Economía', año: 2, cuatrimestre: 4, correlativas: [] },
+      { id: '12', nombre: 'Historia de la Educación en Argentina y América Latina', año: 2, cuatrimestre: 4, correlativas: ['9'] },
 
-  { codigo: "FILO", nombre: "Filosofía de la Educación", anio: 3, cuatri: 1, abre: ["PRAC"] },
-  { codigo: "SOC", nombre: "Sociología de la Educación", anio: 3, cuatri: 1, abre: ["CUR", "FORM"] },
-  { codigo: "PSID", nombre: "Psicología del Desarrollo", anio: 3, cuatri: 1, abre: ["PSIE"] },
-  { codigo: "OPT1", nombre: "Optativa I", anio: 3, cuatri: 1 },
+      { id: '13', nombre: 'Filosofía de la Educación', año: 3, cuatrimestre: 5, correlativas: ['2'] },
+      { id: '14', nombre: 'Sociología de la Educación', año: 3, cuatrimestre: 5, correlativas: ['6', '4'] },
+      { id: '15', nombre: 'Psicología del Desarrollo', año: 3, cuatrimestre: 5, correlativas: ['10'] },
+      { id: '16', nombre: 'Optativa I', año: 3, cuatrimestre: 5, correlativas: [] },
+      { id: '17', nombre: 'Psicología de la Educación', año: 3, cuatrimestre: 6, correlativas: ['15'] },
+      { id: '18', nombre: 'Currículo', año: 3, cuatrimestre: 6, correlativas: ['5', '14'] },
+      { id: '19', nombre: 'Política y Legislación de la Educación', año: 3, cuatrimestre: 6, correlativas: ['4', '12'] },
+      { id: '20', nombre: 'Pedagogía II', año: 3, cuatrimestre: 6, correlativas: ['5'] },
 
-  { codigo: "PSIE", nombre: "Psicología de la Educación", anio: 3, cuatri: 2 },
-  { codigo: "CUR", nombre: "Currículo", anio: 3, cuatri: 2, abre: ["DID1", "ADMI", "COMP"] },
-  { codigo: "PLE", nombre: "Política y Leg. Educativa", anio: 3, cuatri: 2, abre: ["PRAC", "FORM"] },
-  { codigo: "PED2", nombre: "Pedagogía II", anio: 3, cuatri: 2, abre: ["PRAC"] },
+      { id: '21', nombre: 'Didáctica I', año: 4, cuatrimestre: 7, correlativas: ['18'] },
+      { id: '22', nombre: 'Investigación Educativa', año: 4, cuatrimestre: 7, correlativas: ['8'] },
+      { id: '23', nombre: 'Administración y gestión de la educación', año: 4, cuatrimestre: 7, correlativas: ['7', '18'] },
+      { id: '24', nombre: 'Optativa II', año: 4, cuatrimestre: 7, correlativas: [] },
+      { id: '25', nombre: 'Economía y financiamiento de la Educación', año: 4, cuatrimestre: 8, correlativas: ['11', '9'] },
+      { id: '26', nombre: 'Didáctica II', año: 4, cuatrimestre: 8, correlativas: ['21'] },
+      { id: '27', nombre: 'Educación y TIC', año: 4, cuatrimestre: 8, correlativas: ['21'] },
+      { id: '28', nombre: 'Educación Comparada', año: 4, cuatrimestre: 8, correlativas: ['9', '18'] },
 
-  { codigo: "DID1", nombre: "Didáctica I", anio: 4, cuatri: 1, abre: ["DID2", "TIC", "FORM"] },
-  { codigo: "INV", nombre: "Investigación Educativa", anio: 4, cuatri: 1, abre: ["OPT3", "TESI"] },
-  { codigo: "ADMI", nombre: "Administración y Gestión", anio: 4, cuatri: 1, abre: ["AI"] },
-  { codigo: "OPT2", nombre: "Optativa II", anio: 4, cuatri: 1 },
+      { id: '29', nombre: 'Formación y Capacitación', año: 5, cuatrimestre: 9, correlativas: ['14'] },
+      { id: '30', nombre: 'Optativa III', año: 5, cuatrimestre: 9, correlativas: ['22'] },
+      { id: '31', nombre: 'Seminario de Tesina', año: 5, cuatrimestre: 9, correlativas: ['22'] },
+      { id: '32', nombre: 'Análisis Institucional', año: 5, cuatrimestre: 9, correlativas: ['23'] },
+      { id: '33', nombre: 'Tutoría y Escritura de la Tesina', año: 5, cuatrimestre: 9, correlativas: ['31'] },
+      { id: '34', nombre: 'Didáctica III', año: 5, cuatrimestre: 10, correlativas: ['26'] },
+      { id: '35', nombre: 'Práctica Docente', año: 5, cuatrimestre: 10, correlativas: ['13', '19', '20', '27', '34'] },
+      { id: '36', nombre: 'Formación Docente', año: 5, cuatrimestre: 10, correlativas: ['29', '21'] },
+      { id: '37', nombre: 'Optativa IV', año: 5, cuatrimestre: 10, correlativas: [] },
 
-  { codigo: "ECOF", nombre: "Economía y Financiamiento", anio: 4, cuatri: 2 },
-  { codigo: "DID2", nombre: "Didáctica II", anio: 4, cuatri: 2, abre: ["DID3"] },
-  { codigo: "TIC", nombre: "Educación y TIC", anio: 4, cuatri: 2, abre: ["PRAC"] },
-  { codigo: "COMP", nombre: "Educación Comparada", anio: 4, cuatri: 2 },
+      { id: 'ING1', nombre: 'Inglés Nivel I', año: 6, cuatrimestre: 11, correlativas: [] },
+      { id: 'ING2', nombre: 'Inglés Nivel II', año: 6, cuatrimestre: 12, correlativas: ['ING1'] },
+    ];
 
-  { codigo: "FORM", nombre: "Formación y Capacitación", anio: 5, cuatri: 1, abre: ["FORMD"] },
-  { codigo: "OPT3", nombre: "Optativa III", anio: 5, cuatri: 1 },
-  { codigo: "TESI", nombre: "Seminario de Tesina", anio: 5, cuatri: 1, abre: ["TUTO"] },
-  { codigo: "AI", nombre: "Análisis Institucional", anio: 5, cuatri: 1 },
+    const container = document.getElementById("grid-container");
+    const template = document.getElementById("subject-template");
 
-  { codigo: "DID3", nombre: "Didáctica III", anio: 5, cuatri: 2, abre: ["PRAC"] },
-  { codigo: "PRAC", nombre: "Práctica Docente", anio: 5, cuatri: 2 },
-  { codigo: "FORMD", nombre: "Formación Docente", anio: 5, cuatri: 2 },
-  { codigo: "OPT4", nombre: "Optativa IV", anio: 5, cuatri: 2 },
-  { codigo: "TUTO", nombre: "Tutoría y Tesina", anio: 5, cuatri: 2 },
+    const años = new Set(materias.map(m => m.año));
+    años.forEach(año => {
+      const añoDiv = document.createElement("div");
+      añoDiv.className = "year-column";
 
-  { codigo: "ING1", nombre: "Inglés I", anio: 0, cuatri: 1, abre: ["ING2"] },
-  { codigo: "ING2", nombre: "Inglés II", anio: 0, cuatri: 2 }
-];
+      if (año <= 5) {
+        añoDiv.innerHTML = `<h2>Año ${año}</h2>`;
+        const cuatris = [...new Set(materias.filter(m => m.año === año).map(m => m.cuatrimestre))];
+        cuatris.forEach(cuatr => {
+          const semDiv = document.createElement("div");
+          semDiv.className = "semester";
+          semDiv.innerHTML = `<h3>Cuatrimestre ${cuatr}</h3>`;
+          materias.filter(m => m.año === año && m.cuatrimestre === cuatr).forEach(m => {
+            const s = template.content.cloneNode(true);
+            const subj = s.querySelector(".subject");
+            subj.dataset.id = m.id;
+            subj.dataset.prereq = m.correlativas.join(",");
+            s.querySelector(".number").textContent = m.id;
+            s.querySelector(".name").textContent = m.nombre;
+            semDiv.appendChild(s);
+          });
+          añoDiv.appendChild(semDiv);
+        });
+      } else if (año === 6) {
+        añoDiv.innerHTML = `<h2>Idioma Inglés</h2>`;
+        const semDiv = document.createElement("div");
+        semDiv.className = "semester";
+        materias.filter(m => m.año === 6).forEach(m => {
+          const s = template.content.cloneNode(true);
+          const subj = s.querySelector(".subject");
+          subj.dataset.id = m.id;
+          subj.dataset.prereq = m.correlativas.join(",");
+          s.querySelector(".number").textContent = m.id;
+          s.querySelector(".name").textContent = m.nombre;
+          semDiv.appendChild(s);
+        });
+        añoDiv.appendChild(semDiv);
+      }
 
-const grid = document.getElementById("grid");
-
-const maxCuatri = 5;
-const cuatriCols = Array.from({ length: maxCuatri }, (_, i) => document.createElement("div"));
-cuatriCols.forEach((col, i) => {
-  col.className = "cuatrimestre";
-  col.innerHTML = `<h3>${i + 1}º Cuat.</h3>`;
-  grid.appendChild(col);
-});
-
-const estadoMaterias = {};
-
-function renderMaterias() {
-  materias.forEach((m) => {
-    const div = document.createElement("div");
-    div.className = "materia bloqueada";
-    div.dataset.codigo = m.codigo;
-    div.innerHTML = `${m.nombre}<br><small>Año ${m.anio}</small>`;
-    estadoMaterias[m.codigo] = {
-      aprobada: false,
-      element: div,
-      materia: m
-    };
-    cuatriCols[m.cuatri - 1].appendChild(div);
-  });
-}
-
-function actualizarEstados() {
-  for (const [codigo, data] of Object.entries(estadoMaterias)) {
-    const m = data.materia;
-    const requisitos = materias.filter(m2 => m2.abre?.includes(codigo));
-    const puedeAprobarse = requisitos.every(m2 => estadoMaterias[m2.codigo]?.aprobada);
-
-    if (puedeAprobarse && !data.aprobada) {
-      data.element.classList.remove("bloqueada");
-    } else if (!data.aprobada) {
-      data.element.classList.add("bloqueada");
-    }
-  }
-}
-
-function manejarClick(e) {
-  const box = e.currentTarget;
-  const codigo = box.dataset.codigo;
-  const data = estadoMaterias[codigo];
-  if (box.classList.contains("bloqueada")) return;
-  data.aprobada = !data.aprobada;
-  box.classList.toggle("aprobada");
-  actualizarEstados();
-}
-
-function iniciar() {
-  renderMaterias();
-  Object.values(estadoMaterias).forEach(({ element }) => {
-    element.addEventListener("click", manejarClick);
-  });
-  actualizarEstados();
-}
-
-iniciar();
+      container.appendChild(añoDiv);
+    });
+  </script>
